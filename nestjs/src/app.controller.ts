@@ -12,18 +12,18 @@ export class AppController {
     return this.appService.getHello();
   }
 
-  // performTest(@Body() body: { name: string }): void {
-  //   return this.appService.getHello();
-  // }
-
   // @Sse('sse')
-  @Post('lab')
+  @Get('lab')
   sse(@Body() body: { name: string }, @Res() res: Response) {
+    this.eventEmitter(body.name, res);
+  }
+
+  eventEmitter(name: string, @Res() res: Response) {
     res.setHeader('Content-Type', 'text/event-stream');
     res.setHeader('Cache-Control', 'no-cache');
     res.setHeader('Connection', 'keep-alive');
 
-    const eventData = `data:{ "message": "Test performed by ${body.name}"}\n\n`;
+    const eventData = `data:{ "message": "Test performed by ${name}"}\n\n`;
 
     // Send the SSE event data to the client
     res.write(eventData);
