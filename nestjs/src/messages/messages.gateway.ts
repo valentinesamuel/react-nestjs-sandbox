@@ -45,6 +45,6 @@ export class MessagesGateway {
     @MessageBody('isTyping') isTyping: boolean,
     @ConnectedSocket() client: Socket,
   ) {
-    client.broadcast.emit('Typing', { name, isTyping });
+    client.broadcast.emit('typing', { name, isTyping });
   }
 }
