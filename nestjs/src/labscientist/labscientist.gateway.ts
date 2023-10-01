@@ -1,34 +1,43 @@
-import { WebSocketGateway, SubscribeMessage, MessageBody } from '@nestjs/websockets';
-import { LabscientistService } from './labscientist.service';
-import { CreateLabscientistDto } from './dto/create-labscientist.dto';
-import { UpdateLabscientistDto } from './dto/update-labscientist.dto';
+import {
+  WebSocketGateway,
+  SubscribeMessage,
+  MessageBody,
+  WebSocketServer,
+} from '@nestjs/websockets';
+import { Server } from 'socket.io';
 
-@WebSocketGateway()
+@WebSocketGateway({
+  cors: {
+    origin: '*',
+  },
+})
 export class LabscientistGateway {
-  constructor(private readonly labscientistService: LabscientistService) {}
+  constructor() {}
+  @WebSocketServer() server: Server;
 
-  @SubscribeMessage('createLabscientist')
-  create(@MessageBody() createLabscientistDto: CreateLabscientistDto) {
-    return this.labscientistService.create(createLabscientistDto);
+  notifyLabScientist(
+    @MessageBody()
+    testPayload: {
+      doctor: string;
+      patient: string;
+      scientist: string;
+    },
+  ) {
+    this.server.emit('newTestRequest', testPayload);
+    return;
   }
 
-  @SubscribeMessage('findAllLabscientist')
-  findAll() {
-    return this.labscientistService.findAll();
-  }
-
-  @SubscribeMessage('findOneLabscientist')
-  findOne(@MessageBody() id: number) {
-    return this.labscientistService.findOne(id);
-  }
-
-  @SubscribeMessage('updateLabscientist')
-  update(@MessageBody() updateLabscientistDto: UpdateLabscientistDto) {
-    return this.labscientistService.update(updateLabscientistDto.id, updateLabscientistDto);
-  }
-
-  @SubscribeMessage('removeLabscientist')
-  remove(@MessageBody() id: number) {
-    return this.labscientistService.remove(id);
+  @SubscribeMessage('test-done')
+  notifyDoctor(
+    @MessageBody()
+    testPayload: {
+      doctor: string;
+      patient: string;
+      scientist: string;
+      result: [];
+    },
+  ) {
+    console.log(testPayload);
+    return;
   }
 }
