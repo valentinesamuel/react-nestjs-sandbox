@@ -28,7 +28,7 @@ export class LabscientistGateway {
   }
 
   @SubscribeMessage('test-done')
-  notifyDoctor(
+  async notifyDoctor(
     @MessageBody()
     testPayload: {
       doctor: string;
@@ -37,7 +37,6 @@ export class LabscientistGateway {
       result: [];
     },
   ) {
-    console.log(testPayload);
-    return;
+    this.server.emit('scidonetest', testPayload);
   }
 }

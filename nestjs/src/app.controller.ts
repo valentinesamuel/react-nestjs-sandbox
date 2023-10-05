@@ -23,8 +23,6 @@ export class AppController {
       scientist: string;
     },
   ) {
-    //save test request in theh db
-
     this.labScientistGateway.notifyLabScientist(labtestRequest);
     return { success: true, message: 'LabTest request submitted successfully' };
   }
