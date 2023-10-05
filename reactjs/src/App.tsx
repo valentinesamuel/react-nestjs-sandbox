@@ -1,10 +1,12 @@
 import axios from "axios";
 import Scientist from "./Scientist";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { Socket, io } from "socket.io-client";
+import { ClientToServerEvents, ServerToClientEvents } from "./types";
 
 const App: React.FC = () => {
-  const socketRef = useRef<Socket | null>(null);
+  const socket: Socket<ServerToClientEvents, ClientToServerEvents> =
+    io("localhost:3000");
 
   const handleEmit = async () => {
     const response = await axios.post("//localhost:3000/submit", {
@@ -16,20 +18,19 @@ const App: React.FC = () => {
   };
 
   useEffect(() => {
-    socketRef.current = io("localhost:3000");
-
-    socketRef.current.on("connect", () => {
-      console.log("Doctor connected to the Socket.IO server");
+    socket.on("connect", () => {
+      console.log("Doctor connected to the Socket.io server");
     });
 
-    socketRef.current.on("sci-done-test", (testResult) => {
+    socket.on("scidonetest", (testResult) => {
       console.log(testResult);
+      return;
     });
 
     return () => {
-      if (socketRef.current) {
+      if (socket) {
         console.log("Disconnected");
-        socketRef.current.disconnect();
+        socket.disconnect();
       }
     };
   }, []);

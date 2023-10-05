@@ -27,6 +27,10 @@ const Scientist = () => {
       console.log(testRequest);
     });
 
+    socketRef.current.on("scidonetest", (testResult) => {
+      console.log(testResult);
+    });
+
     // Clean up the socket connection when the component unmounts
     return () => {
       if (socketRef.current) {
