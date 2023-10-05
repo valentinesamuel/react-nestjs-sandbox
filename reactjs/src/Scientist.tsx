@@ -14,16 +14,13 @@ const Scientist = () => {
   };
 
   useEffect(() => {
-    // Initialize the socket connection when the component mounts
     socketRef.current = io("localhost:3000");
 
-    // Connect to the WebSocket server
     socketRef.current.on("connect", () => {
       console.log("Scientist onnected to the Socket.IO server");
     });
-    // Listen for incoming messages
+    
     socketRef.current.on("newTestRequest", (testRequest) => {
-      // Display the test request notification to the lab scientist
       console.log(testRequest);
     });
 
@@ -31,7 +28,6 @@ const Scientist = () => {
       console.log(testResult);
     });
 
-    // Clean up the socket connection when the component unmounts
     return () => {
       if (socketRef.current) {
         console.log("Disconnected");

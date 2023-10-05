@@ -37,6 +37,6 @@ export class LabscientistGateway {
       result: [];
     },
   ) {
-    this.server.emit('scidonetest', testPayload);
+    this.server.emit('sci-done-test', testPayload);
   }
 }
