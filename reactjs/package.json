@@ -10,8 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@mormat/react-ui-scheduler": "^0.2.3",
     "axios": "^1.5.1",
+    "planby": "^1.1.4",
     "react": "^18.2.0",
+    "react-calendar-scheduler": "^2.0.8",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
