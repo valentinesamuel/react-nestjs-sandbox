@@ -11,10 +11,14 @@
   },
   "dependencies": {
     "@mormat/react-ui-scheduler": "^0.2.3",
+    "@types/react-big-calendar": "^1.6.5",
     "axios": "^1.5.1",
-    "planby": "^1.1.4",
+    "date-fns": "^2.30.0",
     "react": "^18.2.0",
+    "react-big-calendar": "^1.8.4",
     "react-calendar-scheduler": "^2.0.8",
+    "react-dnd": "^16.0.1",
+    "react-dnd-html5-backend": "^16.0.1",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {

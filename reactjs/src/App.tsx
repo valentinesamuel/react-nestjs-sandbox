@@ -1,45 +1,20 @@
-import "@mormat/react-ui-scheduler/public/scheduler.css";
-import Scheduler from "@mormat/react-ui-scheduler";
+import { FC } from "react";
 
-const App: React.FC = () => {
-  const schedulerEvents = [
-    {
-      label: "meeting",
-      date: "2023-04-18",
-      startTime: "09:00",
-      endTime: "12:00",
-      color: "white",
-      backgroundColor: "rgb(2, 136, 209)",
-    },
-    {
-      label: "conference",
-      date: "2023-04-20",
-      startTime: "10:00",
-      endTime: "18:00",
-      color: "white",
-      backgroundColor: "#9575cd",
-    },
-    {
-      label: "conference",
-      date: "2023-04-20",
-      startTime: "10:00",
-      endTime: "18:00",
-      color: "white",
-      backgroundColor: "#54784c",
-    },
-  ];
+import "react-big-calendar/lib/addons/dragAndDrop/styles.css";
+import "react-big-calendar/lib/css/react-big-calendar.css";
 
-  const onEventChange = (schedulerEvent: unknown) => {
-    console.log("the following event has been changed", schedulerEvent);
-  };
+import DraggableCalendar from "./VeryAdvancedCalendars/DragnDropCalendar";
+import CustomCalendar from "./VeryAdvancedCalendars/CustomCalendar";
+import CalendarSteps from "./VeryAdvancedCalendars/CaledarSteps";
+
+const App: FC = () => {
   return (
-    <Scheduler
-      events={schedulerEvents}
-      onEventChange={onEventChange}
-      currentDate="2023-04-17"
-      // minHour="07:00"
-      // maxHour="21:00"
-    />
+    <div style={{ height: "95vh" }}>
+      {/* <BasicCalendar /> */}
+      {/* <AdvancedCalendar /> */}
+      <DraggableCalendar />
+      {/* <CalendarSteps /> */}
+    </div>
   );
 };
 
