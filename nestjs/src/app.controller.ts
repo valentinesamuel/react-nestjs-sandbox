@@ -26,4 +26,18 @@ export class AppController {
     this.labScientistGateway.notifyLabScientist(labtestRequest);
     return { success: true, message: 'LabTest request submitted successfully' };
   }
+
+  @Post('scientist/submit')
+  async submitLabTestResult(
+    @Body()
+    labtestRequest: {
+      doctor: string;
+      patient: string;
+      scientist: string;
+      result: number[];
+    },
+  ) {
+    this.labScientistGateway.notifyDoctor(labtestRequest);
+    return { success: true, message: 'LabTest result submitted successfully' };
+  }
 }

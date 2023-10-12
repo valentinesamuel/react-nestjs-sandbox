@@ -1,13 +1,11 @@
 import axios from "axios";
 import Scientist from "./Scientist";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { Socket, io } from "socket.io-client";
-import { ClientToServerEvents, ServerToClientEvents } from "./types";
 
 const App: React.FC = () => {
-  const socket: Socket<ServerToClientEvents, ClientToServerEvents> =
-    io("localhost:3000");
-
+  const socketRef = useRef<Socket | null>(null);
+  
   const handleEmit = async () => {
     const response = await axios.post("//localhost:3000/submit", {
       doctor: "Solomon",
@@ -18,19 +16,31 @@ const App: React.FC = () => {
   };
 
   useEffect(() => {
-    socket.on("connect", () => {
-      console.log("Doctor connected to the Socket.io server");
+    socketRef.current = io("localhost:3000");
+    socketRef.current?.on("connect", () => {
+      console.log("Doctor onnected to the Socket.IO server");
     });
 
-    socket.on("scidonetest", (testResult) => {
-      console.log(testResult);
-      return;
-    });
+    socketRef.current?.on(
+      "sci-done-test",
+      (testResult: {
+        doctor: string;
+        patient: string;
+        scientist: string;
+        result: number[];
+      }) => {
+        console.log(
+          `Scientist ${testResult.scientist} has finished the test`,
+          testResult
+        );
+        return;
+      }
+    );
 
     return () => {
-      if (socket) {
+      if (socketRef.current) {
         console.log("Disconnected");
-        socket.disconnect();
+        socketRef.current.disconnect();
       }
     };
   }, []);

@@ -34,7 +34,7 @@ export class LabscientistGateway {
       doctor: string;
       patient: string;
       scientist: string;
-      result: [];
+      result: number[];
     },
   ) {
     this.server.emit('sci-done-test', testPayload);
