@@ -29,16 +29,16 @@ const CustomCalendar = (props: CustomCalendarProps) => {
     },
   };
 
-  const { appointments, blockouts } = EVENTS.reduce(
-    (acc, event) => {
-      if (event?.data?.appointment) acc.appointments.push(event);
-      if (event?.data?.blockout) acc.blockouts.push(event);
-      return acc;
-    },
-    { appointments: [] as EventItem[], blockouts: [] as EventItem[] }
-  );
+  // const { appointments, blockouts } = EVENTS.reduce(
+  //   (acc, event) => {
+  //     if (event?.data?.appointment) acc.appointments.push(event);
+  //     if (event?.data?.blockout) acc.blockouts.push(event);
+  //     return acc;
+  //   },
+  //   { appointments: [] as EventItem[], blockouts: [] as EventItem[] }
+  // );
 
-  return <DnDCalendar {...props}  components={components} />;
+  return <DnDCalendar {...props}  components={components} events={EVENTS}/>;
 };
 
 export default CustomCalendar;

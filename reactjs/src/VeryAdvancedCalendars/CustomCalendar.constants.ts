@@ -7,16 +7,114 @@ export enum AppointmentStatusCode {
 
 export const EVENT_STATUS_COLORS = {
   P: "#bee2fa",
-  CI: "#c7edca",
+  CI: "#c7esca",
 };
 
 export const EVENTS: EventItem[] = [
+  {
+    start: new Date("2023-10-03T10:00:00"),
+    end: new Date("2023-10-04T13:00:00"),
+    data: {
+      appointment: {
+        id: 1,
+        status: "P",
+        location: "New York",
+        resource: "Dr Mann",
+        address: "Building 5\nStreet 44\nNear Express Highway\nNew York",
+      },
+    },
+    isDraggable: true,
+  },
+  {
+    start: new Date("2023-10-03T17:00:00"),
+    end: new Date("2023-10-04T18:00:00"),
+    data: {
+      appointment: {
+        id: 132,
+        status: "P",
+        location: "New York",
+        resource: "Dr BVs",
+        address: "4 New York",
+      },
+    },
+    isDraggable: true,
+  },
+  {
+    start: new Date("2023-10-03T17:00:00"),
+    end: new Date("2023-10-04T18:00:00"),
+    data: {
+      appointment: {
+        id: 132,
+        status: "P",
+        location: "New York",
+        resource: "Dr BVs",
+        address: "4 New York",
+      },
+    },
+    isDraggable: true,
+  },
+  {
+    start: new Date("2023-10-03T17:00:00"),
+    end: new Date("2023-10-04T18:00:00"),
+    data: {
+      appointment: {
+        id: 132,
+        status: "P",
+        location: "New York",
+        resource: "Dr BVs",
+        address: "4 New York",
+      },
+    },
+    isDraggable: true,
+  },
+  {
+    start: new Date("2023-10-03T17:00:00"),
+    end: new Date("2023-10-04T18:00:00"),
+    data: {
+      appointment: {
+        id: 132,
+        status: "P",
+        location: "New York",
+        resource: "Dr BVs",
+        address: "4 New York",
+      },
+    },
+    isDraggable: true,
+  },
+  {
+    start: new Date("2023-10-03T14:00:00"),
+    end: new Date("2023-10-04T15:00:00"),
+    data: {
+      appointment: {
+        id: 12,
+        status: "P",
+        location: "New York",
+        resource: "Dr Cray",
+        address: "44\nNear Express Highway\nNew York",
+      },
+    },
+    isDraggable: true,
+  },
+  {
+    start: new Date("2023-10-1T10:00:00"),
+    end: new Date("2023-10-2T11:00:00"),
+    data: {
+      appointment: {
+        id: 2,
+        status: "P",
+        location: "New York",
+        resource: "Dr Alex",
+        address: "Building 5\nStreet 44\nNear Express Highway\nNew York",
+      },
+    },
+    isDraggable: true,
+  },
   {
     start: new Date("2023-10-10T10:00:00"),
     end: new Date("2023-10-10T11:00:00"),
     data: {
       appointment: {
-        id: 1,
+        id: 3,
         status: "P",
         location: "New York",
         resource: "Dr Alex",
@@ -30,7 +128,7 @@ export const EVENTS: EventItem[] = [
     end: new Date("2023-10-11T13:00:00"),
     data: {
       appointment: {
-        id: 2,
+        id: 4,
         status: "CI",
         location: "Washington",
         resource: "Dr David",
@@ -44,7 +142,7 @@ export const EVENTS: EventItem[] = [
     end: new Date("2023-10-19T14:59:59"),
     data: {
       blockout: {
-        id: 1,
+        id: 5,
         name: "Christmas Holidays",
       },
     },

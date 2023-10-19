@@ -1,8 +1,4 @@
-import {
-  add,
-  addDays,
-  startOfDay,
-} from "date-fns";
+import { add, addDays, startOfDay } from "date-fns";
 import Calendar from "./Calendar";
 import "./Calendar.css";
 
@@ -28,6 +24,46 @@ const events = [
     }),
     data: {
       type: "Reg",
+    },
+  },
+  {
+    title: "ENT Appointment",
+    start: startOfDay(addDays(new Date(), 1)),
+    end: addDays(new Date(), 1),
+    data: {
+      type: "App",
+    },
+  },
+  {
+    title: "ENT Appointment",
+    start: startOfDay(addDays(new Date(), 1)),
+    end: addDays(new Date(), 1),
+    data: {
+      type: "App",
+    },
+  },
+  {
+    title: "ENT Appointment",
+    start: startOfDay(addDays(new Date(), 1)),
+    end: addDays(new Date(), 1),
+    data: {
+      type: "App",
+    },
+  },
+  {
+    title: "ENT Appointment",
+    start: startOfDay(addDays(new Date(), 1)),
+    end: addDays(new Date(), 1),
+    data: {
+      type: "App",
+    },
+  },
+  {
+    title: "ENT Appointment",
+    start: startOfDay(addDays(new Date(), 1)),
+    end: addDays(new Date(), 1),
+    data: {
+      type: "App",
     },
   },
   {
