@@ -3,6 +3,8 @@ import BasicsofMotion from "./modules/BasicsofMotion";
 import Gestures from "./modules/Gestures";
 import AnimationControls from "./modules/AnimationControls";
 import ViewBasedAnimations from "./modules/ViewBasedAnimations";
+import ScrollBasedAnimations from "./modules/ScrollBasedAnimations";
+import TextAnimation from "./modules/TextAnimation";
 
 const App: React.FC = () => {
   return (
@@ -10,7 +12,8 @@ const App: React.FC = () => {
       {/* <BasicsofMotion /> */}
       {/* <Gestures /> */}
       {/* <AnimationControls /> */}
-      <ViewBasedAnimations />
+      {/* <ViewBasedAnimations /> */}
+      <ScrollBasedAnimations />
     </div>
   );
 };
