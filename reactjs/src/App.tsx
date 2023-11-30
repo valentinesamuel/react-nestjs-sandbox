@@ -1,7 +1,12 @@
 import React from "react";
+import BasicsofMotion from "./modules/BasicsofMotion";
 
 const App: React.FC = () => {
-  return <h1>Ready</h1>;
+  return (
+    <div>
+      <BasicsofMotion />
+    </div>
+  );
 };
 
 export default App;
