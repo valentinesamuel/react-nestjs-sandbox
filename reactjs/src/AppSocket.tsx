@@ -1,5 +1,4 @@
 import axios from "axios";
-import Scientist from "./Scientist";
 import { useEffect } from "react";
 import { socket } from "./service/socket";
 import ScientistSocket from "./ScientistSocket";
