@@ -1,7 +1,11 @@
 import React from "react";
+import SimpleAnimations from "./components/Animations/SimpleAnimations";
+import VariantsAnimations from "./components/Animations/Variants";
+import MannualAnimations from "./components/Animations/MannualAnimations";
+import SingleValueAnimation from "./components/SingleValueAnimation";
 
 const App: React.FC = () => {
-  return <h1>Ready</h1>;
+  return <SingleValueAnimation />;
 };
 
 export default App;
