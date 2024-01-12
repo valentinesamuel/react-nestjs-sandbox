@@ -12,6 +12,8 @@ type FormValues = {
   };
   phoneNumbers: string[];
   phNumbers: { number: string }[];
+  age: number;
+  dob: Date;
 };
 
 export const YouTubeForm = () => {
@@ -26,6 +28,8 @@ export const YouTubeForm = () => {
       },
       phoneNumbers: ["23424346", "3453465466", "3637894867"],
       phNumbers: [{ number: "23424346" }, { number: "3453465466" }],
+      age: 0,
+      dob: new Date(),
     },
     // defaultValues: async () => {
     //   const response = await fetch(
@@ -107,6 +111,37 @@ export const YouTubeForm = () => {
                     !field.endsWith("name") || "Must not have a 'name' in it"
                   );
                 },
+              },
+            })}
+          />
+          <p className="error">{errors.channel?.message}</p>
+        </div>
+
+        <div className="form-control">
+          <label htmlFor="age">Age</label>
+          <input
+            type="text"
+            id="channel"
+            {...register("age", {
+              valueAsNumber: true,
+              required: {
+                value: true,
+                message: "age is required",
+              },
+            })}
+          />
+          <p className="error">{errors.channel?.message}</p>
+        </div>
+        <div className="form-control">
+          <label htmlFor="date">Date</label>
+          <input
+            type="text"
+            id="date"
+            {...register("dob", {
+              valueAsDate: true,
+              required: {
+                value: true,
+                message: "date is required",
               },
             })}
           />
