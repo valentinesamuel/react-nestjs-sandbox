@@ -6,6 +6,10 @@ type FormValues = {
   username: string;
   email: string;
   channel: string;
+  social: {
+    twitter: string;
+    facebook: string;
+  };
 };
 
 export const YouTubeForm = () => {
@@ -14,6 +18,10 @@ export const YouTubeForm = () => {
       username: "",
       email: "",
       channel: "",
+      social: {
+        facebook: "",
+        twitter: "",
+      },
     },
     // defaultValues: async () => {
     //   const response = await fetch(
@@ -95,6 +103,18 @@ export const YouTubeForm = () => {
             })}
           />
           <p className="error">{errors.channel?.message}</p>
+        </div>
+
+        <div className="form-control">
+          <label htmlFor="social">Social</label>
+          <input type="text" id="social" {...register("social.twitter")} />
+          <p className="error">{errors.social?.twitter?.message}</p>
+        </div>
+
+        <div className="form-control">
+          <label htmlFor="social">Social</label>
+          <input type="text" id="social" {...register("social.facebook")} />
+          <p className="error">{errors.social?.facebook?.message}</p>
         </div>
 
         <button>Submit</button>
