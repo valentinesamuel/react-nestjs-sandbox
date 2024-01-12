@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useFieldArray, useForm } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
+import { useEffect } from "react";
 
 type FormValues = {
   username: string;
@@ -43,7 +44,7 @@ export const YouTubeForm = () => {
     //   };
     // },
   });
-  const { register, control, handleSubmit, formState } = form;
+  const { register, control, handleSubmit, formState, watch } = form;
   const { errors } = formState;
   const { fields, append, remove } = useFieldArray({
     control,
@@ -54,10 +55,20 @@ export const YouTubeForm = () => {
     console.log("Form Submitted", data);
   };
 
+  useEffect(() => {
+    const sub = watch((value) => {
+      console.log(value);
+    });
+
+    return () => {
+      sub.unsubscribe();
+    };
+  }, [watch]);
+
   return (
     <div>
       <h1>YouTube Form</h1>
-
+      {/* <h2>Watched value: {JSON.stringify(watchUsername)}</h2> */}
       <form onSubmit={handleSubmit(onsubmitForm)}>
         <div className="form-control">
           <label htmlFor="username">Username</label>
