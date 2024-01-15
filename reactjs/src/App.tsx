@@ -1,7 +1,13 @@
 import { FC } from "react";
+import "./App.css";
+import { YouTubeForm } from "./components/YoutubeForm";
 
 const App: FC = () => {
-  return <h1>Ready</h1>;
+  return (
+    <div>
+      <YouTubeForm />
+    </div>
+  );
 };
 
 export default App;
