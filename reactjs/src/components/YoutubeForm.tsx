@@ -64,8 +64,8 @@ export const YouTubeForm = () => {
     // isSubmitted,
     // isSubmitting,
     // submitCount,
+    //isValid,
     isDirty,
-    isValid,
   } = formState;
   const { fields, append, remove } = useFieldArray({
     control,
