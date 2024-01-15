@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useFieldArray, useForm } from "react-hook-form";
+import { FieldErrors, useFieldArray, useForm } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 import { useEffect } from "react";
 
@@ -21,7 +21,7 @@ export const YouTubeForm = () => {
   const form = useForm<FormValues>({
     defaultValues: {
       username: "Batman",
-      email: "test@test.com",
+      email: " ",
       channel: "",
       social: {
         facebook: "",
@@ -52,8 +52,19 @@ export const YouTubeForm = () => {
     watch,
     getValues,
     setValue,
+    reset,
   } = form;
-  const { errors, touchedFields, dirtyFields, isDirty } = formState;
+  const {
+    errors,
+    touchedFields,
+    dirtyFields,
+    isSubmitSuccessful,
+    isSubmitted,
+    isSubmitting,
+    submitCount,
+    isDirty,
+    isValid,
+  } = formState;
   const { fields, append, remove } = useFieldArray({
     control,
     name: "phNumbers",
@@ -61,6 +72,10 @@ export const YouTubeForm = () => {
 
   const onsubmitForm = (data: FormValues) => {
     console.log("Form Submitted", data);
+  };
+
+  const onError = (errors: FieldErrors<FormValues>) => {
+    console.log("Form Errors", errors);
   };
 
   const handleGetValues = () => {
@@ -87,13 +102,19 @@ export const YouTubeForm = () => {
     };
   }, [watch]);
 
-  console.log({ dirtyFields, touchedFields, isDirty });
+  useEffect(() => {
+    if (isSubmitSuccessful) {
+      reset();
+    }
+  }, [isSubmitSuccessful, reset]);
+
+  // console.log({ dirtyFields, touchedFields, isDirty });
 
   return (
     <div>
       <h1>YouTube Form</h1>
       {/* <h2>Watched value: {JSON.stringify(watchUsername)}</h2> */}
-      <form onSubmit={handleSubmit(onsubmitForm)}>
+      <form onSubmit={handleSubmit(onsubmitForm, onError)}>
         <div className="form-control">
           <label htmlFor="username">Username</label>
           <input
@@ -288,7 +309,8 @@ export const YouTubeForm = () => {
             </button>
           </div>
         </div>
-        <button>Submit</button>
+        <button disabled={!isDirty || !isValid}>Submit</button>
+        <button onClick={() => reset()}>Reset</button>
         <button onClick={handleGetValues}>Get Values</button>
         <button onClick={handleSetValues}>Set Values</button>
       </form>
