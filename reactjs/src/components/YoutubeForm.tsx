@@ -20,8 +20,8 @@ type FormValues = {
 export const YouTubeForm = () => {
   const form = useForm<FormValues>({
     defaultValues: {
-      username: "",
-      email: "",
+      username: "Batman",
+      email: "test@test.com",
       channel: "",
       social: {
         facebook: "",
@@ -44,7 +44,15 @@ export const YouTubeForm = () => {
     //   };
     // },
   });
-  const { register, control, handleSubmit, formState, watch, getValues } = form;
+  const {
+    register,
+    control,
+    handleSubmit,
+    formState,
+    watch,
+    getValues,
+    setValue,
+  } = form;
   const { errors } = formState;
   const { fields, append, remove } = useFieldArray({
     control,
@@ -57,6 +65,15 @@ export const YouTubeForm = () => {
 
   const handleGetValues = () => {
     console.log("Values", getValues("social"));
+    // console.log("Values", getValues());
+  };
+
+  const handleSetValues = () => {
+    setValue("username", "", {
+      shouldDirty: true,
+      shouldTouch: true,
+      shouldValidate: true,
+    });
     // console.log("Values", getValues());
   };
 
@@ -263,7 +280,8 @@ export const YouTubeForm = () => {
           </div>
         </div>
         <button>Submit</button>
-        <button onClick={() => handleGetValues}>Get Values</button>
+        <button onClick={handleGetValues}>Get Values</button>
+        <button onClick={handleSetValues}>Set Values</button>
       </form>
       <DevTool control={control} />
     </div>
