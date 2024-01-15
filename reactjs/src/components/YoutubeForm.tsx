@@ -32,6 +32,7 @@ export const YouTubeForm = () => {
       age: 0,
       dob: new Date(),
     },
+    mode: "onSubmit",
     // defaultValues: async () => {
     //   const response = await fetch(
     //     "https://jsonplaceholder.typicode.com/users/1"
@@ -53,15 +54,16 @@ export const YouTubeForm = () => {
     getValues,
     setValue,
     reset,
+    trigger,
   } = form;
   const {
     errors,
-    touchedFields,
-    dirtyFields,
     isSubmitSuccessful,
-    isSubmitted,
-    isSubmitting,
-    submitCount,
+    // touchedFields,
+    // dirtyFields,
+    // isSubmitted,
+    // isSubmitting,
+    // submitCount,
     isDirty,
     isValid,
   } = formState;
@@ -141,11 +143,21 @@ export const YouTubeForm = () => {
                 message: "email is required",
               },
 
-              validate: (fieldValue) => {
-                return (
-                  fieldValue !== "admin@example.com" ||
-                  "Enter a different email address"
-                );
+              validate: {
+                notAdmin: (fieldValue) => {
+                  return (
+                    fieldValue !== "admin@example.com" ||
+                    "Enter a different email address"
+                  );
+                },
+                emailAvailable: async (fieldValue) => {
+                  const response = await fetch(
+                    `https://jsonplaceholder.typicode.com/users/email=${fieldValue}`
+                  );
+                  const data = await response.json();
+
+                  return data.length === 0 || "Email is already taken";
+                },
               },
             })}
           />
@@ -309,10 +321,11 @@ export const YouTubeForm = () => {
             </button>
           </div>
         </div>
-        <button disabled={!isDirty || !isValid}>Submit</button>
+        <button disabled={!isDirty}>Submit</button>
         <button onClick={() => reset()}>Reset</button>
         <button onClick={handleGetValues}>Get Values</button>
         <button onClick={handleSetValues}>Set Values</button>
+        <button onClick={() => trigger("channel")}>Validate</button>
       </form>
       <DevTool control={control} />
     </div>
