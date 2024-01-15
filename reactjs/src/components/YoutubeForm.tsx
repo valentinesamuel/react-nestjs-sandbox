@@ -53,7 +53,7 @@ export const YouTubeForm = () => {
     getValues,
     setValue,
   } = form;
-  const { errors } = formState;
+  const { errors, touchedFields, dirtyFields, isDirty } = formState;
   const { fields, append, remove } = useFieldArray({
     control,
     name: "phNumbers",
@@ -86,6 +86,8 @@ export const YouTubeForm = () => {
       sub.unsubscribe();
     };
   }, [watch]);
+
+  console.log({ dirtyFields, touchedFields, isDirty });
 
   return (
     <div>
@@ -215,7 +217,14 @@ export const YouTubeForm = () => {
             <p className="error">{errors.phoneNumbers?.[0]?.message}</p>
           </div>
           <label htmlFor="social">Twitter</label>
-          <input type="text" id="social" {...register("social.twitter")} />
+          <input
+            type="text"
+            id="social"
+            {...register("social.twitter", {
+              disabled: watch("channel") === "",
+              // THis diables the validation and makes the value to be undefined
+            })}
+          />
           <p className="error">{errors.social?.twitter?.message}</p>
         </div>
 
