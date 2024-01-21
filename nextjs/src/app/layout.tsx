@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { makeStore } from "@/lib/store";
 import StoreProvider from "./StoreProvider";
+import PersistStoreProvider from "./PersistStoreProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,7 +21,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <StoreProvider>{children}</StoreProvider>
+        <StoreProvider>
+          {/* <PersistStoreProvider> */}
+          {children}
+          {/* </PersistStoreProvider> */}
+        </StoreProvider>
       </body>
     </html>
   );
