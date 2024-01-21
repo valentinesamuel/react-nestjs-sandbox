@@ -1,10 +1,7 @@
 import type { Metadata } from "next";
-import { Provider } from "react-redux";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { makeStore } from "@/lib/store";
-import StoreProvider from "./StoreProvider";
-import PersistStoreProvider from "./PersistStoreProvider";
+import ThemeContextProvider from "@/context/theme.context";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,11 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <StoreProvider>
-          {/* <PersistStoreProvider> */}
-          {children}
-          {/* </PersistStoreProvider> */}
-        </StoreProvider>
+        <ThemeContextProvider>{children}</ThemeContextProvider>
       </body>
     </html>
   );

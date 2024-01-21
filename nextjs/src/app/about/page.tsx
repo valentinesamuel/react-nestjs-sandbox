@@ -1,25 +1,20 @@
 "use client";
-import { toggleTheme } from "@/lib/features/counter/themeSlice";
-import { useAppDispatch, useAppSelector } from "@/lib/hooks";
+import { useThemeContext } from "@/context/theme.context";
 import Link from "next/link";
+import Theme from "./Theme";
 
 const About = () => {
-  const dispatch = useAppDispatch();
-  const currentTheme = useAppSelector((state) => state.theme.currentTheme);
+  const { setTheme } = useThemeContext();
   return (
     <div>
-      {currentTheme}
+      <Theme />
       <br />
       <br />
       <br />
-      <button onClick={() => dispatch(toggleTheme("light"))}>
-        Put light theme
-      </button>
+      <button onClick={() => setTheme("light")}>Put light theme</button>
       <br />
       <br />
-      <button onClick={() => dispatch(toggleTheme("dark"))}>
-        Put dark theme
-      </button>
+      <button onClick={() => setTheme("dark")}>Put dark theme</button>
       <Link href={"/contact"}>Go to contact</Link>
     </div>
   );

@@ -1,13 +1,12 @@
-"use client";
-import { useAppSelector } from "@/lib/hooks";
 import Link from "next/link";
+import CurrentTheme from "./CurrentTheme";
 
 const Contact = () => {
-  const currentTheme = useAppSelector((state) => state.theme.currentTheme);
   return (
     <div>
-      Current theme is: {currentTheme}
+      <p className="text-4xl">Contact Page</p>
       <br />
+      <CurrentTheme />
       <br />
       <br />
       <Link href={"/about"}>Go to about page</Link>
