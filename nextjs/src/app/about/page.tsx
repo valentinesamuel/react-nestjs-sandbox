@@ -1,20 +1,21 @@
-"use client";
-import { useThemeContext } from "@/context/theme.context";
 import Link from "next/link";
 import Theme from "./Theme";
+import DarkButton from "./DarkButton";
+import LightButton from "./LightButton";
 
 const About = () => {
-  const { setTheme } = useThemeContext();
   return (
     <div>
       <Theme />
       <br />
       <br />
       <br />
-      <button onClick={() => setTheme("light")}>Put light theme</button>
+      <DarkButton />
       <br />
       <br />
-      <button onClick={() => setTheme("dark")}>Put dark theme</button>
+      <LightButton />
+      <br />
+      <br />
       <Link href={"/contact"}>Go to contact</Link>
     </div>
   );
